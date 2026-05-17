@@ -118,24 +118,62 @@
 }
 
 .filter-section {
-  margin-bottom: 1.25rem;
-  padding-bottom: 1.25rem;
   border-bottom: 1px solid #e6e6ec;
 }
 
 .filter-section:last-child {
   border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
 }
 
-.filter-section h4 {
-  margin: 0 0 0.5rem 0;
+.filter-section summary {
+  cursor: pointer;
+  padding: 0.7rem 0;
   font-size: 0.85rem;
   color: #636e72;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-weight: 600;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+.filter-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.filter-section summary::before {
+  content: "▸";
+  font-size: 0.7rem;
+  color: #888;
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+
+.filter-section[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.filter-section summary:hover {
+  color: #2d3436;
+}
+
+.filter-count {
+  background: #6c5ce7;
+  color: white;
+  border-radius: 10px;
+  padding: 0.05rem 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: auto;
+}
+
+.filter-section-body {
+  padding: 0 0 0.9rem 0.25rem;
 }
 
 .filter-checkbox {

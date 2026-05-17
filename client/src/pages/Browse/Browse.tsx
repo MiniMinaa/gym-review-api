@@ -269,64 +269,93 @@ function Browse() {
             </div>
           </div>
 
-          <section className="filter-section">
-            <h4>City</h4>
-            {cities.map((city) => (
-              <label key={city} className="filter-checkbox">
-                <input
-                  type="checkbox"
-                  checked={selectedCities.has(city)}
-                  onChange={() => toggleInUrlSet("cities", city)}
-                />
-                {city}
-              </label>
-            ))}
-          </section>
-
-          <section className="filter-section">
-            <h4>Venue type</h4>
-            {Object.entries(VENUE_TYPE_LABELS).map(([key, label]) => (
-              <label key={key} className="filter-checkbox">
-                <input
-                  type="checkbox"
-                  checked={selectedVenueTypes.has(key)}
-                  onChange={() => toggleInUrlSet("types", key)}
-                />
-                {label}
-              </label>
-            ))}
-          </section>
-
-          <section className="filter-section">
-            <h4>Minimum rating</h4>
-            {[0, 3, 4, 5].map((r) => (
-              <label key={r} className="filter-checkbox">
-                <input
-                  type="radio"
-                  name="minRating"
-                  checked={minRating === r}
-                  onChange={() => setMinRating(r)}
-                />
-                {r === 0 ? "Any" : `${r}+ stars`}
-              </label>
-            ))}
-          </section>
-
-          {Object.entries(TAG_GROUPS).map(([group, tags]) => (
-            <section key={group} className="filter-section">
-              <h4>{group}</h4>
-              {tags.map((tag) => (
-                <label key={tag} className="filter-checkbox">
+          <details className="filter-section">
+            <summary>
+              City
+              {selectedCities.size > 0 && (
+                <span className="filter-count">{selectedCities.size}</span>
+              )}
+            </summary>
+            <div className="filter-section-body">
+              {cities.map((city) => (
+                <label key={city} className="filter-checkbox">
                   <input
                     type="checkbox"
-                    checked={selectedTags.has(tag)}
-                    onChange={() => toggleInUrlSet("tags", tag)}
+                    checked={selectedCities.has(city)}
+                    onChange={() => toggleInUrlSet("cities", city)}
                   />
-                  {TAG_LABELS[tag] || tag}
+                  {city}
                 </label>
               ))}
-            </section>
-          ))}
+            </div>
+          </details>
+
+          <details className="filter-section">
+            <summary>
+              Venue type
+              {selectedVenueTypes.size > 0 && (
+                <span className="filter-count">{selectedVenueTypes.size}</span>
+              )}
+            </summary>
+            <div className="filter-section-body">
+              {Object.entries(VENUE_TYPE_LABELS).map(([key, label]) => (
+                <label key={key} className="filter-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={selectedVenueTypes.has(key)}
+                    onChange={() => toggleInUrlSet("types", key)}
+                  />
+                  {label}
+                </label>
+              ))}
+            </div>
+          </details>
+
+          <details className="filter-section">
+            <summary>
+              Minimum rating
+              {minRating > 0 && <span className="filter-count">1</span>}
+            </summary>
+            <div className="filter-section-body">
+              {[0, 3, 4, 5].map((r) => (
+                <label key={r} className="filter-checkbox">
+                  <input
+                    type="radio"
+                    name="minRating"
+                    checked={minRating === r}
+                    onChange={() => setMinRating(r)}
+                  />
+                  {r === 0 ? "Any" : `${r}+ stars`}
+                </label>
+              ))}
+            </div>
+          </details>
+
+          {Object.entries(TAG_GROUPS).map(([group, tags]) => {
+            const groupCount = tags.filter((t) => selectedTags.has(t)).length;
+            return (
+              <details key={group} className="filter-section">
+                <summary>
+                  {group}
+                  {groupCount > 0 && (
+                    <span className="filter-count">{groupCount}</span>
+                  )}
+                </summary>
+                <div className="filter-section-body">
+                  {tags.map((tag) => (
+                    <label key={tag} className="filter-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={selectedTags.has(tag)}
+                        onChange={() => toggleInUrlSet("tags", tag)}
+                      />
+                      {TAG_LABELS[tag] || tag}
+                    </label>
+                  ))}
+                </div>
+              </details>
+            );
+          })}
         </aside>
       )}
 
