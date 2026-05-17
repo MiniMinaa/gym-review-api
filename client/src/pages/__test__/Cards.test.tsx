@@ -86,10 +86,9 @@ describe("Cards Page", () => {
       id: 1,
       name: "Queer Community Center",
       location: "Stockholm",
-      averageSafetyRating: 4.5,
       reviews: [
         { id: 1, comment: "Great place!", rating: 5 },
-        { id: 2, comment: "Very safe", rating: 4 },
+        { id: 2, comment: "Very welcoming", rating: 4 },
       ],
     };
     vi.mocked(fetch).mockResolvedValue({
@@ -102,10 +101,11 @@ describe("Cards Page", () => {
     await waitFor(() => {
       expect(screen.getByText("Queer Community Center")).toBeInTheDocument();
       expect(screen.getByText("Location: Stockholm")).toBeInTheDocument();
-      expect(screen.getByText("Safety: 4.5/5")).toBeInTheDocument();
+      expect(screen.getByText("4.5/5")).toBeInTheDocument();
+      expect(screen.getByLabelText("4.5 out of 5 stars")).toBeInTheDocument();
       expect(screen.getByText("Great place!")).toBeInTheDocument();
       expect(screen.getByText("Rating: 5/5")).toBeInTheDocument();
-      expect(screen.getByText("Very safe")).toBeInTheDocument();
+      expect(screen.getByText("Very welcoming")).toBeInTheDocument();
       expect(screen.getByText("Rating: 4/5")).toBeInTheDocument();
       expect(screen.getByText(/ReviewForm for place 1/i)).toBeInTheDocument();
     });
@@ -116,7 +116,6 @@ describe("Cards Page", () => {
       id: 1,
       name: "New Space",
       location: "Gothenburg",
-      averageSafetyRating: null,
       reviews: [],
     };
     vi.mocked(fetch).mockResolvedValue({
@@ -129,7 +128,7 @@ describe("Cards Page", () => {
     await waitFor(() => {
       expect(screen.getByText("New Space")).toBeInTheDocument();
       expect(screen.getByText("Location: Gothenburg")).toBeInTheDocument();
-      expect(screen.getByText("Safety: N/A/5")).toBeInTheDocument();
+      expect(screen.getByText("No ratings yet")).toBeInTheDocument();
       expect(screen.getByText("No reviews yet.")).toBeInTheDocument();
       expect(screen.getByText(/ReviewForm for place 1/i)).toBeInTheDocument();
     });

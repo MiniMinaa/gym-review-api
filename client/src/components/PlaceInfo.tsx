@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ReviewForm from "../components/ReviewForm/ReviewForm";
+import StarRating, { averageRating } from "./StarRating";
 
 function PlaceInfo() {
   const { id } = useParams();
@@ -27,14 +28,17 @@ function PlaceInfo() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!place) return <div>No space found.</div>; // Added a period
+  if (!place) return <div>No space found.</div>;
 
   return (
     <div className="place-details-container">
       <h1>{place.name}</h1>
-      <p>Location: {place.location}</p> {/* Added "Location: " prefix */}
+      <p>Location: {place.location}</p>
       <div className="place-ratings">
-        <span>Safety: {place.averageSafetyRating || "N/A"}/5</span>
+        <StarRating
+          rating={averageRating(place.reviews)}
+          reviewCount={place.reviews?.length ?? 0}
+        />
       </div>
       <ReviewForm placeId={id} />
     </div>

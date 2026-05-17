@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
 
-// Fetch and display list of all places from (GET /places)
 function PlaceList() {
-  // UseStates
-  const [places, setPlaces] = useState([]); // Stores list of places
-  const [loading, setLoading] = useState(true); // Tracks if data is being fetched
-  const [error, setError] = useState<string | null>(null); // Stores error messages
+  const [places, setPlaces] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Fetch Data (MUST BE BEFORE ANY EARLY RETURNS)
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
@@ -27,7 +24,6 @@ function PlaceList() {
     fetchPlaces();
   }, []);
 
-  // Early returns after useEffect
   if (loading) {
     return (
       <div className="loader-container">
@@ -35,7 +31,7 @@ function PlaceList() {
       </div>
     );
   }
-  if (error) return <div>Error: {error}</div>; // Fixed syntax: ${error} → {error}
+  if (error) return <div>Error: {error}</div>;
   if (places.length === 0) return <div>No places found.</div>;
 
   return (

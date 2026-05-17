@@ -61,13 +61,20 @@ describe("Browse Page", () => {
         id: 1,
         name: "Queer Community Center",
         location: "Stockholm",
-        averageSafetyRating: 4.5,
+        venueType: "library",
+        tags: ["lgbtq-affirming"],
+        reviews: [
+          { id: 1, rating: 4 },
+          { id: 2, rating: 5 },
+        ],
       },
       {
         id: 2,
         name: "Safe Space Café",
         location: "Gothenburg",
-        averageSafetyRating: 5,
+        venueType: "cafe",
+        tags: ["lgbtq-affirming"],
+        reviews: [{ id: 1, rating: 5 }],
       },
     ];
     vi.mocked(fetch).mockResolvedValue({
@@ -80,12 +87,13 @@ describe("Browse Page", () => {
     await waitFor(() => {
       expect(screen.getByText("Browse Spaces")).toBeInTheDocument();
       expect(screen.getByText("Queer Community Center")).toBeInTheDocument();
-      expect(screen.getByText("Stockholm")).toBeInTheDocument();
-      expect(screen.getByText("Safety: 4.5/5")).toBeInTheDocument();
       expect(screen.getByText("Safe Space Café")).toBeInTheDocument();
-      expect(screen.getByText("Gothenburg")).toBeInTheDocument();
-      expect(screen.getByText("Safety: 5/5")).toBeInTheDocument();
-      // Check for View Details links
+      // Cities appear both in cards and in the sidebar "City" filter list,
+      // so multiple matches are expected.
+      expect(screen.getAllByText("Stockholm").length).toBeGreaterThan(0);
+      expect(screen.getAllByText("Gothenburg").length).toBeGreaterThan(0);
+      expect(screen.getByText("4.5/5")).toBeInTheDocument();
+      expect(screen.getByText("5.0/5")).toBeInTheDocument();
       expect(screen.getAllByText("View Details").length).toBe(2);
     });
   });

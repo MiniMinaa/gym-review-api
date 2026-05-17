@@ -1,0 +1,26 @@
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 1rem;
+}
+
+.star-rating__stars {
+  color: #f5b50a;
+  font-size: 1.15em;
+  letter-spacing: 1px;
+}
+
+.star-rating__value {
+  font-weight: 600;
+}
+
+.star-rating__count {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.star-rating--empty {
+  color: #888;
+  font-style: italic;
+}

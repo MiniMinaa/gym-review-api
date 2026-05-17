@@ -8,14 +8,14 @@ export default function Login() {
   useEffect(() => {
     if (!isAuthenticated && !isLoading) {
       loginWithRedirect({
+        appState: { returnTo: "/profile" },
         authorizationParams: {
-          returnTo: "/",
           screen_hint: "login",
           scope: "openid profile email",
         },
       });
     }
-  }, []);
+  }, [isAuthenticated, isLoading, loginWithRedirect]);
   return (
     <>
       {isLoading ? (

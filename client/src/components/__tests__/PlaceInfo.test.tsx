@@ -94,7 +94,10 @@ describe("PlaceInfo Component", () => {
       id: 1,
       name: "Queer Community Center",
       location: "Stockholm",
-      averageSafetyRating: 4.5,
+      reviews: [
+        { id: 1, rating: 4 },
+        { id: 2, rating: 5 },
+      ],
     };
     vi.mocked(fetch).mockResolvedValue({
       ok: true,
@@ -106,7 +109,7 @@ describe("PlaceInfo Component", () => {
     await waitFor(() => {
       expect(screen.getByText("Queer Community Center")).toBeInTheDocument();
       expect(screen.getByText("Location: Stockholm")).toBeInTheDocument();
-      expect(screen.getByText("Safety: 4.5/5")).toBeInTheDocument();
+      expect(screen.getByText("4.5/5")).toBeInTheDocument();
     });
   });
 
@@ -115,7 +118,7 @@ describe("PlaceInfo Component", () => {
       id: 1,
       name: "Queer Community Center",
       location: "Stockholm",
-      averageSafetyRating: 4.5,
+      reviews: [{ id: 1, rating: 5 }],
     };
     vi.mocked(fetch).mockResolvedValue({
       ok: true,

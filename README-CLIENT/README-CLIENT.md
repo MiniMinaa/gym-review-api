@@ -142,7 +142,8 @@ This app uses **Auth0** for authentication.
 
 > ![Login](./tests/Login.png)
 
-> - **GitHub Actions**: Workflow passing (green checkmark).
+> - **GitHub Actions**:
+>   ![GhActions](./tests/GhActions.png)
 > - **UI Pages**:
 >   - Home page (welcome message and CTA).
 >   - Browse page (list of spaces).

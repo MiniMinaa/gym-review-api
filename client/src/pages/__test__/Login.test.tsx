@@ -85,8 +85,8 @@ describe("Login Page", () => {
     );
 
     expect(mockLoginWithRedirect).toHaveBeenCalledWith({
+      appState: { returnTo: "/profile" },
       authorizationParams: {
-        returnTo: "/",
         screen_hint: "login",
         scope: "openid profile email",
       },
