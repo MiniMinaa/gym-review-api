@@ -6,7 +6,7 @@
 }
 
 .star-rating__stars {
-  color: #f5b50a;
+  color: var(--color-star);
   font-size: 1.15em;
   letter-spacing: 1px;
 }
@@ -16,11 +16,11 @@
 }
 
 .star-rating__count {
-  color: #666;
+  color: var(--color-text);
   font-size: 0.9em;
 }
 
 .star-rating--empty {
-  color: #888;
+  color: var(--color-text-muted);
   font-style: italic;
 }

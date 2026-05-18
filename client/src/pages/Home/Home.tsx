@@ -7,9 +7,8 @@ function Home() {
       <header className="home-header">
         <h1>Welcome to Safe Space</h1>
         <p>
-          A community-driven platform for LGBTQIA+, AFAB, disabled, neurodivergent,
-          BIPOC, and other underrepresented folks to rate and review the spaces
-          where they actually feel safe, seen, and welcomed.
+          A community-driven platform for underrepresented groups to rate and
+          review the spaces where they actually feel safe, seen, and welcomed.
         </p>
       </header>
 

@@ -14,15 +14,18 @@ export type VenueType =
   | "park" | "salon" | "clinic" | "coworking" | "hostel" | "record-store";
 
 // Tag conventions — use these strings consistently:
-//   Accessibility:  wheelchair-accessible, step-free, accessible-bathroom,
-//                   pool-hoist, automatic-doors, large-print, captions,
-//                   adaptive-routes
-//   Sensory / ND:   sensory-friendly, low-noise, quiet-space
-//   Identity:       lgbtq-owned, lgbtq-affirming, trans-friendly,
-//                   trans-affirming, sapphic-owned, bipoc-owned,
-//                   bipoc-affirming, women-owned
-//   Class / Sober:  sliding-scale, free-entry, alcohol-free, sober-friendly
-//   Body:           body-positive
+//   Accessibility:   wheelchair-accessible, step-free, accessible-bathroom,
+//                    pool-hoist, automatic-doors, large-print, captions,
+//                    adaptive-routes
+//   Sensory / ND:    sensory-friendly, low-noise, quiet-space
+//   Identity:        lgbtq-owned, lgbtq-affirming, trans-friendly,
+//                    trans-affirming, sapphic-owned, bipoc-owned,
+//                    bipoc-affirming, women-owned
+//   Class / Sober:   sliding-scale, free-entry, alcohol-free, sober-friendly
+//   Body:            body-positive
+//   Parents/Carers:  chest-feeding-friendly, changing-table-all-genders,
+//                    family-bathroom, stroller-accessible, high-chairs,
+//                    kids-welcome
 export type Tag = string;
 
 export interface Place {
@@ -74,7 +77,7 @@ export const places: Place[] = [
     description: "Cozy coffee place in the old town with a steady afternoon crowd.",
     imageUrl: placeImage("1554118811-1e0d58224f24"),
     venueType: "cafe",
-    tags: ["wheelchair-accessible", "step-free", "accessible-bathroom"],
+    tags: ["wheelchair-accessible", "step-free", "accessible-bathroom", "changing-table-all-genders", "high-chairs", "kids-welcome"],
     reviews: [
       { id: 1, author: "Linnea",  ...USERS.Linnea,  rating: 4, comment: "Step-free entrance round the side, accessible bathroom, and staff who always greet me and my girlfriend warmly. Small things, all of them." },
       { id: 2, author: "Erik",    ...USERS.Erik,    rating: 3, comment: "Crowd skews quite hetero after work. Not unsafe, just not my scene." },
@@ -121,7 +124,7 @@ export const places: Place[] = [
     description: "Small sapphic-owned cafe near Linnéplatsen. Plants everywhere, vinyl on weekends.",
     imageUrl: placeImage("1453614512568-c4024d13c247"),
     venueType: "cafe",
-    tags: ["sapphic-owned", "lgbtq-affirming"],
+    tags: ["sapphic-owned", "lgbtq-affirming", "chest-feeding-friendly", "changing-table-all-genders", "high-chairs", "kids-welcome"],
     reviews: [
       { id: 1, author: "Maja",    ...USERS.Maja,    rating: 5, comment: "Felt at home from the second I walked in. They also host a sapphic book club on Sundays." },
       { id: 2, author: "Priya",   ...USERS.Priya,   rating: 4, comment: "Owner asked about my pronouns the second time I came in. Felt seen, not interrogated. Cardamom bun is also unreal." },
@@ -196,7 +199,7 @@ export const places: Place[] = [
     description: "Public library with one of the largest LGBTQIA+ collections in the Nordics. Pronoun pins at the front desk, step-free entrance, large-print and audiobook options.",
     imageUrl: placeImage("1481627834876-b7833e8f5570"),
     venueType: "library",
-    tags: ["lgbtq-affirming", "step-free", "automatic-doors", "large-print", "free-entry"],
+    tags: ["lgbtq-affirming", "step-free", "automatic-doors", "large-print", "free-entry", "family-bathroom", "stroller-accessible", "kids-welcome", "changing-table-all-genders"],
     reviews: [
       { id: 1, author: "Robin",   ...USERS.Robin,   rating: 5, comment: "First public library I've been in where the LGBTQ+ shelf isn't tucked away. It's front and centre." },
       { id: 2, author: "Charlie", ...USERS.Charlie, rating: 5, comment: "Quiet, well-lit, automatic doors at the entrance, librarians wear pronoun pins. Best afternoon refuge in the city for a wheelchair user who needs predictable spaces." },
@@ -242,7 +245,7 @@ export const places: Place[] = [
     description: "Public swimming hall with weekly trans-friendly hours, family changing rooms with private cubicles, working pool hoist, and larger swimsuits in stock.",
     imageUrl: placeImage("1530549387789-4c1017266635"),
     venueType: "pool",
-    tags: ["trans-affirming", "pool-hoist", "wheelchair-accessible"],
+    tags: ["trans-affirming", "pool-hoist", "wheelchair-accessible", "family-bathroom", "changing-table-all-genders", "stroller-accessible", "kids-welcome"],
     reviews: [
       { id: 1, author: "Theo",    ...USERS.Theo,    rating: 5, comment: "Trans-friendly swim hours on Thursdays changed my relationship with my body. Hadn't been in a pool in eight years before this." },
       { id: 2, author: "Felix",   ...USERS.Felix,   rating: 5, comment: "Family changing rooms with private cubicles for everyone. As a trans guy I finally got to swim without dread." },
@@ -348,7 +351,7 @@ export const places: Place[] = [
     description: "Yoga studio near Möllevångstorget with an explicit body-positive, LGBTQIA+-affirming policy. Fat-friendly props and chair-yoga classes weekly.",
     imageUrl: placeImage("1545205597-3d9d02c29597"),
     venueType: "studio",
-    tags: ["lgbtq-affirming", "body-positive"],
+    tags: ["lgbtq-affirming", "body-positive", "chest-feeding-friendly"],
     reviews: [
       { id: 1, author: "Priya",   ...USERS.Priya,   rating: 5, comment: "Teachers actually mean it when they say 'this pose looks however your body needs it to'." },
       { id: 2, author: "Sam",     ...USERS.Sam,     rating: 5, comment: "Neutral language throughout — 'lift your chest' not 'show your chest', no 'ladies' calls. Tiny details, huge difference." },
@@ -377,7 +380,7 @@ export const places: Place[] = [
     description: "Feminist and LGBT cafe in Möllevången. Books on the walls, zines on the counter, no laptops after 4pm.",
     imageUrl: placeImage("1507842217343-583bb7270b66"),
     venueType: "cafe",
-    tags: ["lgbtq-affirming", "women-owned"],
+    tags: ["lgbtq-affirming", "women-owned", "chest-feeding-friendly", "changing-table-all-genders", "kids-welcome"],
     reviews: [
       { id: 1, author: "Mira",    ...USERS.Mira,    rating: 5, comment: "Reading corner is my happy place. They stock zines you can't find anywhere else." },
       { id: 2, author: "Charlie", ...USERS.Charlie, rating: 4, comment: "Met half my chosen family at the Sunday lesbian book club they host. Cafe is more like a living room." },
@@ -451,7 +454,7 @@ export const places: Place[] = [
     description: "Latin American restaurant in Skanstull run by an LGBT couple. Ceviche, arepas, and a Pride flag behind the bar.",
     imageUrl: placeImage("1565299624946-b28f40a0ae38"),
     venueType: "restaurant",
-    tags: ["lgbtq-owned", "bipoc-owned"],
+    tags: ["lgbtq-owned", "bipoc-owned", "high-chairs", "kids-welcome"],
     reviews: [
       { id: 1, author: "Priya",   ...USERS.Priya,   rating: 5, comment: "Ceviche better than anything I had in Lima last year. They sat me at the bar when I came in alone." },
       { id: 2, author: "Sam",     ...USERS.Sam,     rating: 4, comment: "LGBT-owned and it shows in every detail — the music, the menu notes, the way the staff treats everyone." },
@@ -466,7 +469,7 @@ export const places: Place[] = [
     description: "Independent LGBT bookstore in central Uppsala with a curated rainbow children's section and a weekly poetry night.",
     imageUrl: placeImage("1521587760476-6c12a4b040da"),
     venueType: "bookstore",
-    tags: ["lgbtq-owned", "lgbtq-affirming"],
+    tags: ["lgbtq-owned", "lgbtq-affirming", "chest-feeding-friendly", "family-bathroom", "kids-welcome"],
     reviews: [
       { id: 1, author: "Mira",    ...USERS.Mira,    rating: 5, comment: "Three trans memoirs I couldn't get anywhere else. Staff recommendations are next-level." },
       { id: 2, author: "Charlie", ...USERS.Charlie, rating: 5, comment: "Monthly LGBT poetry night. I read here for the first time. The crowd was kind." },
@@ -542,7 +545,7 @@ export const places: Place[] = [
     description: "Small contemporary art gallery focused on LGBT and diaspora artists. Free entry on first Thursdays. Sensory-friendly viewing hours twice a month.",
     imageUrl: placeImage("1531058020387-3be344556be6"),
     venueType: "gallery",
-    tags: ["lgbtq-affirming", "bipoc-affirming", "sensory-friendly", "free-entry"],
+    tags: ["lgbtq-affirming", "bipoc-affirming", "sensory-friendly", "free-entry", "stroller-accessible", "kids-welcome"],
     reviews: [
       { id: 1, author: "Sam",     ...USERS.Sam,     rating: 5, comment: "Current exhibition is entirely Black LGBT artists. The curation is fearless and the wall texts don't apologise for the work." },
       { id: 2, author: "Yusuf",   ...USERS.Yusuf,   rating: 4, comment: "Quiet, free entry one Thursday a month, and the guard is the most patient art-explainer in Göteborg." },
@@ -557,7 +560,7 @@ export const places: Place[] = [
     description: "Large urban park that hosts LGBT skate meets, summer drag picnics, and a weekly community market.",
     imageUrl: placeImage("1500382017468-9049fed747ef"),
     venueType: "park",
-    tags: ["lgbtq-affirming", "free-entry"],
+    tags: ["lgbtq-affirming", "free-entry", "stroller-accessible", "kids-welcome", "family-bathroom"],
     reviews: [
       { id: 1, author: "Erik",    ...USERS.Erik,    rating: 5, comment: "Sunday drag picnics in summer turn this park into the best public space in Lund." },
       { id: 2, author: "Anna",    ...USERS.Anna,    rating: 4, comment: "Big enough to find a quiet corner, central enough to walk to. Felt safe even after dark — rare." },
@@ -572,7 +575,7 @@ export const places: Place[] = [
     description: "LGBT-owned bistro near Linnéplatsen. Lyonnaise classics, a thoughtful vegan option, two-hour dinners welcome.",
     imageUrl: placeImage("1517248135467-4c7edcad34c4"),
     venueType: "restaurant",
-    tags: ["lgbtq-owned"],
+    tags: ["lgbtq-owned", "high-chairs", "kids-welcome", "family-bathroom"],
     reviews: [
       { id: 1, author: "Diego",   ...USERS.Diego,   rating: 5, comment: "Came alone, ended up chatting with the chef about her partner's home cooking. Duck confit is reason enough to return." },
       { id: 2, author: "Lena",    ...USERS.Lena,    rating: 4, comment: "Lyonnaise classics. LGBT owner with a rainbow sticker on the door and a Pride flag behind the bar." },

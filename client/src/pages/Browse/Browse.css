@@ -26,15 +26,23 @@
 
 /* Sidebar */
 .filter-sidebar {
-  background-color: #f9f9fb;
-  border: 1px solid #e6e6ec;
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1.25rem;
   align-self: start;
   position: sticky;
-  top: 1rem;
-  max-height: calc(100vh - 2rem);
+  top: var(--navbar-height);
+  height: calc(100vh - var(--navbar-height));
   overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .filter-sidebar {
+    position: static;
+    height: auto;
+    max-height: 70vh;
+  }
 }
 
 .filter-header {
@@ -48,7 +56,7 @@
 .filter-header h3 {
   margin: 0;
   font-size: 1.1rem;
-  color: #2d3436;
+  color: var(--color-text);
 }
 
 .filter-header-actions {
@@ -60,7 +68,7 @@
 .filter-clear {
   background: none;
   border: none;
-  color: #6c5ce7;
+  color: var(--color-accent);
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 600;
@@ -73,43 +81,43 @@
 
 .sidebar-toggle {
   background: none;
-  border: 1px solid #d6d6dd;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   width: 28px;
   height: 28px;
   cursor: pointer;
   font-size: 1rem;
   line-height: 1;
-  color: #2d3436;
+  color: var(--color-text);
   padding: 0;
 }
 
 .sidebar-toggle:hover {
-  background: #eee;
+  background: var(--color-bg-soft);
 }
 
 .show-filters-button {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: white;
-  border: 1px solid #d6d6dd;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 0.5rem 0.85rem;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .show-filters-button:hover {
-  background: #f5f3ff;
-  border-color: #6c5ce7;
+  background: var(--color-bg-soft);
+  border-color: var(--color-accent);
 }
 
 .show-filters-badge {
-  background: #6c5ce7;
+  background: var(--color-burnt-sienna);
   color: white;
   border-radius: 10px;
   padding: 0.05rem 0.45rem;
@@ -118,7 +126,7 @@
 }
 
 .filter-section {
-  border-bottom: 1px solid #e6e6ec;
+  border-bottom: 1px solid var(--color-raw-umber);
 }
 
 .filter-section:last-child {
@@ -129,7 +137,7 @@
   cursor: pointer;
   padding: 0.7rem 0;
   font-size: 0.85rem;
-  color: #636e72;
+  color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-weight: 600;
@@ -147,7 +155,7 @@
 .filter-section summary::before {
   content: "▸";
   font-size: 0.7rem;
-  color: #888;
+  color: var(--color-text-muted);
   transition: transform 0.15s ease;
   display: inline-block;
 }
@@ -157,11 +165,11 @@
 }
 
 .filter-section summary:hover {
-  color: #2d3436;
+  color: var(--color-text);
 }
 
 .filter-count {
-  background: #6c5ce7;
+  background: var(--color-burnt-sienna);
   color: white;
   border-radius: 10px;
   padding: 0.05rem 0.45rem;
@@ -182,13 +190,13 @@
   gap: 0.5rem;
   padding: 0.25rem 0;
   font-size: 0.92rem;
-  color: #2d3436;
+  color: var(--color-text);
   cursor: pointer;
 }
 
 .filter-checkbox input {
   cursor: pointer;
-  accent-color: #6c5ce7;
+  accent-color: var(--color-accent);
 }
 
 /* Main column */
@@ -200,28 +208,37 @@
   text-align: left;
   margin: 0 0 1rem 0;
   font-size: 2rem;
-  color: #2d3436;
+  color: var(--color-text);
 }
 
 /* Search bar with autocomplete */
 .search-bar {
-  position: relative;
+  position: sticky;
+  top: var(--navbar-height);
+  z-index: 50;
   margin-bottom: 1rem;
 }
 
 .search-input {
   width: 100%;
+  box-sizing: border-box;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border-strong);
   border-radius: 8px;
+  background: var(--color-bg-card);
+  color: var(--color-text);
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
+.search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
 .search-input:focus {
-  border-color: #6c5ce7;
-  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.2);
 }
 
 .suggestions {
@@ -229,8 +246,8 @@
   top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background: white;
-  border: 1px solid #e6e6ec;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   list-style: none;
@@ -246,7 +263,7 @@
   flex-direction: column;
   padding: 0.6rem 1rem;
   cursor: pointer;
-  border-bottom: 1px solid #f0f0f4;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .suggestions li:last-child {
@@ -254,22 +271,22 @@
 }
 
 .suggestions li:hover {
-  background: #f5f3ff;
+  background: var(--color-bg-soft);
 }
 
 .suggestion-name {
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text);
 }
 
 .suggestion-meta {
   font-size: 0.82rem;
-  color: #888;
+  color: var(--color-text-muted);
   margin-top: 0.1rem;
 }
 
 .results-count {
-  color: #636e72;
+  color: var(--color-text-muted);
   font-size: 0.9rem;
   margin: 0 0 1.25rem 0;
 }
@@ -282,10 +299,10 @@
 }
 
 .place-card {
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1.5rem;
-  background-color: white;
+  background-color: var(--color-bg-card);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.2s,
@@ -308,25 +325,25 @@
 
 .place-name {
   font-size: 1.25rem;
-  color: #6c5ce7;
+  color: var(--color-accent);
   margin-bottom: 0.5rem;
 }
 
 .place-location {
-  color: #636e72;
+  color: var(--color-text-muted);
   margin-bottom: 0.75rem;
 }
 
 .place-ratings {
   margin-bottom: 1rem;
-  color: #2d3436;
+  color: var(--color-text);
   font-weight: 500;
 }
 
 .place-details-link {
   display: inline-block;
-  background-color: #6c5ce7;
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
   padding: 0.5rem 1rem;
   border-radius: 4px;
   text-decoration: none;
@@ -335,7 +352,7 @@
 }
 
 .place-details-link:hover {
-  background-color: #5649c0;
+  background-color: var(--color-accent-hover);
 }
 
 .loading-message,
@@ -351,5 +368,5 @@
 }
 
 .no-places-message {
-  color: #636e72;
+  color: var(--color-text-muted);
 }

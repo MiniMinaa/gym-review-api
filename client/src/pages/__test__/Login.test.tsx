@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import Login from "../Login";
 import { useAuth0, Auth0ContextInterface, User } from "@auth0/auth0-react";
@@ -6,12 +6,19 @@ import { MfaApiClient } from "@auth0/auth0-spa-js";
 import { MemoryRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-// Mock PacmanLoader
+const mockNavigate = vi.fn();
+
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual<typeof import("react-router-dom")>(
+    "react-router-dom",
+  );
+  return { ...actual, useNavigate: () => mockNavigate };
+});
+
 vi.mock("react-spinners", () => ({
   PacmanLoader: () => <div data-testid="pacman-loader" />,
 }));
 
-// Mock useAuth0
 vi.mock("@auth0/auth0-react", () => ({
   useAuth0: vi.fn(),
 }));
@@ -53,6 +60,7 @@ const mockUseAuth0 = (
 describe("Login Page", () => {
   beforeEach(() => {
     vi.resetAllMocks();
+    mockNavigate.mockClear();
   });
 
   it("shows PacmanLoader while loading", () => {
@@ -93,13 +101,11 @@ describe("Login Page", () => {
     });
   });
 
-  it("shows Logout button when authenticated", () => {
-    const mockLogout = vi.fn();
+  it("redirects to /profile when authenticated (logout lives on Profile, not here)", () => {
     vi.mocked(useAuth0).mockReturnValue(
       mockUseAuth0({
         isAuthenticated: true,
         isLoading: false,
-        logout: mockLogout,
       }),
     );
 
@@ -109,10 +115,10 @@ describe("Login Page", () => {
       </MemoryRouter>,
     );
 
-    const logoutButton = screen.getByRole("button", { name: /Logout/i });
-    expect(logoutButton).toBeInTheDocument();
-    fireEvent.click(logoutButton);
-    expect(mockLogout).toHaveBeenCalled();
+    expect(mockNavigate).toHaveBeenCalledWith("/profile", { replace: true });
+    expect(
+      screen.queryByRole("button", { name: /Logout/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("renders nothing when not authenticated and not loading", () => {

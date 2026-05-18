@@ -73,6 +73,14 @@ const TAG_GROUPS: Record<string, string[]> = {
     "sliding-scale",
     "free-entry",
   ],
+  "Parents & Caregivers": [
+    "chest-feeding-friendly",
+    "changing-table-all-genders",
+    "family-bathroom",
+    "stroller-accessible",
+    "high-chairs",
+    "kids-welcome",
+  ],
 };
 
 const TAG_LABELS: Record<string, string> = {
@@ -99,6 +107,12 @@ const TAG_LABELS: Record<string, string> = {
   "sober-friendly": "Sober-friendly",
   "sliding-scale": "Sliding-scale pricing",
   "free-entry": "Free entry",
+  "chest-feeding-friendly": "Chest/breastfeeding-friendly",
+  "changing-table-all-genders": "Changing table (all genders)",
+  "family-bathroom": "Family bathroom",
+  "stroller-accessible": "Stroller-accessible",
+  "high-chairs": "High chairs",
+  "kids-welcome": "Kids welcome",
 };
 
 const SIDEBAR_KEY = "browse:sidebarOpen";

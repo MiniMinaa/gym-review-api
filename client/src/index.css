@@ -1,3 +1,32 @@
+:root {
+  /* PBr7 earth pigment palette */
+  --color-raw-sienna: #d78c3c;
+  --color-burnt-sienna: #b0552a;
+  --color-burnt-umber: #5c3317;
+  --color-raw-umber: #7b6b3f;
+
+  /* Pink accent */
+  --color-accent: #f9a8d4;
+  --color-accent-hover: #f472b6;
+  --color-accent-shadow: rgba(249, 168, 212, 0.25);
+  --color-on-accent: #18181b;
+
+  /* Dark NEUTRAL theme — surfaces are not brown */
+  --color-bg-page: #18181b;
+  --color-bg-card: #27272a;
+  --color-bg-soft: #3f3f46;
+  --color-text: #f4f4f5;
+  --color-text-muted: #a1a1aa;
+  --color-border: #3f3f46;
+  --color-border-strong: #52525b;
+  --color-star: var(--color-raw-sienna);
+
+  --navbar-height: 4rem;
+}
+
 body {
-  background-color: #1f2028;
+  margin: 0;
+  background-color: var(--color-bg-page);
+  color: var(--color-text);
+  padding-top: var(--navbar-height);
 }

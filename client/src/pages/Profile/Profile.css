@@ -24,7 +24,7 @@
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #6c5ce7;
+  border: 2px solid var(--color-accent);
 }
 
 .profile-info {
@@ -36,17 +36,17 @@
 .profile-username {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #2d3436;
+  color: var(--color-text);
 }
 
 .profile-email {
   font-size: 1rem;
-  color: #636e72;
+  color: var(--color-text-muted);
 }
 
 .logout-button {
-  background-color: #6c5ce7;
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
@@ -57,5 +57,5 @@
 }
 
 .logout-button:hover {
-  background-color: #5649c0;
+  background-color: var(--color-accent-hover);
 }

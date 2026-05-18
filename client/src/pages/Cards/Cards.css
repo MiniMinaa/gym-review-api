@@ -15,7 +15,7 @@
 }
 
 .place-description {
-  color: #555 !important;
+  color: var(--color-text-muted) !important;
   font-style: italic;
   margin-bottom: 1rem !important;
 }
@@ -32,7 +32,7 @@
   height: 44px;
   border-radius: 50%;
   object-fit: cover;
-  background-color: #eee;
+  background-color: var(--color-bg-soft);
 }
 
 .review-author-info {
@@ -43,22 +43,22 @@
 
 .review-author {
   font-weight: 600;
-  color: #2d3436;
+  color: var(--color-text);
 }
 
 .review-pronouns {
   font-size: 0.85em;
-  color: #888;
+  color: var(--color-text-muted);
 }
 
 .place-details-container h1 {
   font-size: 2rem;
-  color: #2d3436;
+  color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 
 .place-details-container > p {
-  color: #636e72;
+  color: var(--color-text-muted);
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
 }
@@ -66,7 +66,7 @@
 .place-ratings {
   margin-bottom: 2rem;
   font-size: 1.1rem;
-  color: #2d3436;
+  color: var(--color-text);
 }
 
 .place-ratings span {
@@ -80,45 +80,45 @@
 
 .reviews-section h2 {
   font-size: 1.5rem;
-  color: #2d3436;
+  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .review-card {
-  border: 1px solid #eee;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 1rem;
   margin-bottom: 1rem;
-  background-color: #f9f9f9;
+  background-color: var(--color-bg-soft);
 }
 
 .review-card p {
   margin-bottom: 0.5rem;
-  color: #2d3436;
+  color: var(--color-text);
 }
 
 .review-card span {
-  color: #6c5ce7;
+  color: var(--color-accent);
   font-weight: bold;
 }
 
 /* ReviewForm Styles */
 .review-form {
   margin-top: 2rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border);
   padding-top: 2rem;
 }
 
 .review-form h2 {
   font-size: 1.5rem;
-  color: #2d3436;
+  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .review-form label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #2d3436;
+  color: var(--color-text);
   font-weight: 500;
 }
 
@@ -128,7 +128,7 @@
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   font-size: 1rem;
 }
@@ -139,8 +139,8 @@
 }
 
 .review-form button {
-  background-color: #6c5ce7;
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
@@ -151,5 +151,5 @@
 }
 
 .review-form button:hover {
-  background-color: #5649c0;
+  background-color: var(--color-accent-hover);
 }
