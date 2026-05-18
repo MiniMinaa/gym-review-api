@@ -1,7 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Cards.css";
-import ReviewForm from "../../components/ReviewForm/ReviewForm";
 import StarRating, { averageRating } from "../../components/StarRating";
 
 function Cards() {
@@ -9,7 +8,6 @@ function Cards() {
   const [place, setPlace] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [refreshCount, setRefreshCount] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -30,7 +28,7 @@ function Cards() {
 
     fetchPlace();
     return () => { cancelled = true; };
-  }, [id, refreshCount]);
+  }, [id]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -38,6 +36,9 @@ function Cards() {
 
   return (
     <div className="place-details-container">
+      <Link to="/places" className="back-to-browse">
+        ← Browse places
+      </Link>
       {place.imageUrl && (
         <img
           src={place.imageUrl}
@@ -58,37 +59,38 @@ function Cards() {
       </div>
       <div className="reviews-section">
         <h2>Reviews</h2>
-        {place.reviews?.length > 0 ? (
-          place.reviews.map((review) => (
-            <div key={review.id} className="review-card">
-              <div className="review-header">
-                {review.authorAvatar && (
-                  <img
-                    src={review.authorAvatar}
-                    alt=""
-                    className="review-avatar"
-                  />
-                )}
-                <div className="review-author-info">
-                  <span className="review-author">{review.author}</span>
-                  {review.authorPronouns && (
-                    <span className="review-pronouns">{review.authorPronouns}</span>
+        <div className="reviews-scroll">
+          {place.reviews?.length > 0 ? (
+            place.reviews.map((review) => (
+              <div key={review.id} className="review-card">
+                <div className="review-header">
+                  {review.authorAvatar && (
+                    <img
+                      src={review.authorAvatar}
+                      alt=""
+                      className="review-avatar"
+                    />
                   )}
+                  <div className="review-author-info">
+                    <span className="review-author">{review.author}</span>
+                    {review.authorPronouns && (
+                      <span className="review-pronouns">{review.authorPronouns}</span>
+                    )}
+                  </div>
                 </div>
+                <p>{review.comment}</p>
+                <span>Rating: {review.rating}/5</span>
               </div>
-              <p>{review.comment}</p>
-              <span>Rating: {review.rating}/5</span>
-            </div>
-          ))
-        ) : (
-          <p>No reviews yet.</p>
-        )}
+            ))
+          ) : (
+            <p>No reviews yet.</p>
+          )}
+        </div>
       </div>
 
-      <ReviewForm
-        placeId={id}
-        onReviewSubmitted={() => setRefreshCount((c) => c + 1)}
-      />
+      <Link to={`/places/${id}/review`} className="leave-review-link">
+        Leave a Review
+      </Link>
     </div>
   );
 }

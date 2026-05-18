@@ -84,6 +84,28 @@
   margin-bottom: 1rem;
 }
 
+.reviews-scroll {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.reviews-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.reviews-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.reviews-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 3px;
+}
+
 .review-card {
   border: 1px solid var(--color-border);
   border-radius: 6px;
@@ -100,6 +122,39 @@
 .review-card span {
   color: var(--color-accent);
   font-weight: bold;
+}
+
+.back-to-browse {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.back-to-browse:hover {
+  background-color: var(--color-bg-soft);
+}
+
+.leave-review-link {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.leave-review-link:hover {
+  background-color: var(--color-accent-hover);
 }
 
 /* ReviewForm Styles */

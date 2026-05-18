@@ -11,6 +11,7 @@ import Browse from "./pages/Browse/Browse";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile/Profile";
 import Cards from "./pages/Cards/Cards";
+import Review from "./pages/Review/Review";
 import { Auth0Provider, type AppState } from "@auth0/auth0-react";
 
 function AppWithAuth() {
@@ -52,6 +53,7 @@ function AppWithAuth() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/places/:id" element={<Cards />} />
+        <Route path="/places/:id/review" element={<Review />} />
       </Routes>
     </Auth0Provider>
   );
