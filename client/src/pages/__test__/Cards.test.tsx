@@ -22,12 +22,6 @@ vi.mock("@auth0/auth0-react", () => ({
   })),
 }));
 
-// Mock ReviewForm
-vi.mock("../../components/ReviewForm/ReviewForm", () => ({
-  default: ({ placeId }: { placeId: string }) => (
-    <div>ReviewForm for place {placeId}</div>
-  ),
-}));
 
 // Mock global fetch
 vi.stubGlobal("fetch", vi.fn());
@@ -107,7 +101,7 @@ describe("Cards Page", () => {
       expect(screen.getByText("Rating: 5/5")).toBeInTheDocument();
       expect(screen.getByText("Very welcoming")).toBeInTheDocument();
       expect(screen.getByText("Rating: 4/5")).toBeInTheDocument();
-      expect(screen.getByText(/ReviewForm for place 1/i)).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: /Leave a Review/i })).toBeInTheDocument();
     });
   });
 
@@ -130,7 +124,7 @@ describe("Cards Page", () => {
       expect(screen.getByText("Location: Gothenburg")).toBeInTheDocument();
       expect(screen.getByText("No ratings yet")).toBeInTheDocument();
       expect(screen.getByText("No reviews yet.")).toBeInTheDocument();
-      expect(screen.getByText(/ReviewForm for place 1/i)).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: /Leave a Review/i })).toBeInTheDocument();
     });
   });
 });

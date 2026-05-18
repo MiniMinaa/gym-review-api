@@ -18,7 +18,7 @@ vi.mock("@auth0/auth0-react", () => ({
     logout: vi.fn(),
     handleRedirectCallback: vi.fn(),
     isLoading: false,
-    user: undefined,
+    user: { name: "Test User" },
     error: undefined,
   })),
 }));
@@ -60,6 +60,11 @@ describe("ReviewForm Component", () => {
   });
 
   it("submits the form with valid rating and comment", async () => {
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({}),
+    } as Response);
+
     const { container } = render(<ReviewForm placeId={mockPlaceId} />);
     const select = screen.getByRole("combobox");
     const textarea = screen.getByRole("textbox");
@@ -74,11 +79,9 @@ describe("ReviewForm Component", () => {
         expect.stringContaining(`/places/${mockPlaceId}/reviews`),
         expect.objectContaining({
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer mock-token",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            author: "Test User",
             rating: 5,
             comment: "Great place!",
           }),
@@ -87,18 +90,26 @@ describe("ReviewForm Component", () => {
     });
   });
 
-  it("calls getAccessTokenSilently when submitting", async () => {
-    const { container } = render(<ReviewForm placeId={mockPlaceId} />);
-    const select = screen.getByRole("combobox");
-    const textarea = screen.getByRole("textbox");
-    const form = container.querySelector("form");
+  it("uses the Auth0 user name as the author when authenticated", async () => {
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({}),
+    } as Response);
 
-    fireEvent.change(select, { target: { value: "5" } });
-    fireEvent.change(textarea, { target: { value: "Great place!" } });
-    fireEvent.submit(form!);
+    const { container } = render(<ReviewForm placeId={mockPlaceId} />);
+    expect(screen.getByText(/Posting as/i)).toBeInTheDocument();
+    expect(screen.getByText("Test User")).toBeInTheDocument();
+
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "4" } });
+    fireEvent.submit(container.querySelector("form")!);
 
     await waitFor(() => {
-      expect(mockGetAccessTokenSilently).toHaveBeenCalled();
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(`/places/${mockPlaceId}/reviews`),
+        expect.objectContaining({
+          body: expect.stringContaining('"author":"Test User"'),
+        }),
+      );
     });
   });
 });
