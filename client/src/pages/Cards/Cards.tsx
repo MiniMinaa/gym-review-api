@@ -9,23 +9,28 @@ function Cards() {
   const [place, setPlace] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [refreshCount, setRefreshCount] = useState(0);
 
   useEffect(() => {
+    let cancelled = false;
+
     const fetchPlace = async () => {
       try {
         setLoading(true);
         const response = await fetch(`http://localhost:4000/places/${id}`);
         if (!response.ok) throw new Error("Failed to fetch place");
         const data = await response.json();
-        setPlace(data);
-      } catch (error) {
-        setError(error.message);
+        if (!cancelled) setPlace(data);
+      } catch (err) {
+        if (!cancelled) setError((err as Error).message);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
+
     fetchPlace();
-  }, [id]);
+    return () => { cancelled = true; };
+  }, [id, refreshCount]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -42,7 +47,9 @@ function Cards() {
       )}
       <h1>{place.name}</h1>
       <p>Location: {place.location}</p>
-      {place.description && <p className="place-description">{place.description}</p>}
+      {place.description && (
+        <p className="place-description">{place.description}</p>
+      )}
       <div className="place-ratings">
         <StarRating
           rating={averageRating(place.reviews)}
@@ -78,7 +85,10 @@ function Cards() {
         )}
       </div>
 
-      <ReviewForm placeId={id} />
+      <ReviewForm
+        placeId={id}
+        onReviewSubmitted={() => setRefreshCount((c) => c + 1)}
+      />
     </div>
   );
 }
